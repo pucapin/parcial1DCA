@@ -11,6 +11,8 @@ class CardTurismo extends HTMLElement {
     }
 
     render() {
+
+        
         this.shadowRoot.innerHTML = `
         <div class="card">
         <img src="" alt="">
