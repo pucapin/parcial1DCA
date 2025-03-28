@@ -4,7 +4,6 @@ class SectionCards extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({mode: 'open'});
-        //Shadow DOM: rama o arbol aparte del dom que se renderiza aparte, es como ramas separadas del DOM con codigo separado.
     }
 
     connectedCallback() {
@@ -13,6 +12,14 @@ class SectionCards extends HTMLElement {
 
     render() {
         this.shadowRoot.innerHTML = `
+        <style>
+        .section {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+        flex-direction: column;
+        }       
+        </style>
         <div class="section">
 
         </div>`
@@ -25,12 +32,21 @@ class SectionCards extends HTMLElement {
             newCard.setAttribute('costo', item.costo)
             newCard.setAttribute('alojamiento', item.alojamiento)
             newCard.setAttribute('duracion', item.duracion);
+            newCard.setAttribute('descripcion', item.descripcion);
             if (item.guia_incluido === false) {
                 newCard.setAttribute('guia_incluido', 'No incluye guía')
             } else {
                 newCard.setAttribute('guia_incluido', 'Sí incluye guía')
             }
-            
+            newCard.setAttribute('actividades', item.actividades);
+            if(item.reservado === false) {
+                newCard.setAttribute('disponibilidad', 'No disponible')
+                newCard.setAttribute('reserva', 'No disponible')
+            } else {
+                newCard.setAttribute('disponibilidad', 'Disponible para reserva');
+                newCard.setAttribute('reserva', 'Reservar')
+            }
+            newCard.setAttribute('img', 'https://picsum.photos/300/200')
             this.shadowRoot.appendChild(newCard);
         });
     }
