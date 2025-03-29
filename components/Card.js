@@ -3,7 +3,6 @@ class CardTurismo extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({mode: 'open'});
-        //Shadow DOM: rama o arbol aparte del dom que se renderiza aparte, es como ramas separadas del DOM con codigo separado.
     }
 
     connectedCallback() {
@@ -38,14 +37,17 @@ class CardTurismo extends HTMLElement {
             <p>${this.getAttribute('actividades') + ' '}</p>
             <p>${this.getAttribute('disponibilidad')}</p>
 
-            <button class="reserva-btn">${this.getAttribute('reserva')}</button>
+            <button id="reserva-btn">${this.getAttribute('reserva')}</button>
         </div>
         </div>`
-        const reservaBtn = document.querySelector('reserva-btn')
-        reservaBtn.addEventListener('click', function() {
-            console.log("Botón presionado")
+        const reservaBtn = this.shadowRoot.querySelector('#reserva-btn')
+        reservaBtn.addEventListener('click', () => {
+            console.log("Reservado")
+            
+
         });
     }
+
 }
 
 export {CardTurismo};
